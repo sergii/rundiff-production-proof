@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
+      RAILS_ENV: test
       RUNDIFF_SQLITE_DATABASE: tmp/ci.sqlite3
     steps:
       - uses: actions/checkout@v6
