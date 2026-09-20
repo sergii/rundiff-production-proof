@@ -1,3 +1,3 @@
 module RailsSqliteSubject
-  QUERY_COUNT = 2
+  QUERY_COUNT = 8
 end
