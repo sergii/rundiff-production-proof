@@ -64,7 +64,7 @@ jobs:
 
           claimed=0
           for attempt in $(seq 1 20); do
-            status="$(curl --silent --show-error               --output claim.json               --write-out '%{http_code}'               --request POST               --header "Authorization: Bearer $RUNDIFF_BRIDGE_TOKEN"               --header "Content-Type: application/json"               --data "$payload"               "$RUNDIFF_CONTROL_PLANE_URL/v1/execution-bridges/github-actions/claim")"
+            status="$(curl --silent --show-error               --output claim.json               --write-out '%{http_code}'               --request POST               --header "Authorization: Bearer $RUNDIFF_BRIDGE_TOKEN"               --header "Content-Type: application/json"               --data "$payload"               "$RUNDIFF_CONTROL_PLANE_URL/execution-bridges/github-actions/claim")"
 
             if [[ "$status" == "200" ]]; then
               claimed=1
@@ -172,7 +172,7 @@ jobs:
         run: |
           set -Eeuo pipefail
 
-          status="$(curl --silent --show-error             --output submit.json             --write-out '%{http_code}'             --request POST             --header "Authorization: Bearer $RUNDIFF_BRIDGE_TOKEN"             --header "Content-Type: application/json"             --data-binary @result.json             "$RUNDIFF_CONTROL_PLANE_URL/v1/execution-bridges/github-actions/executions/$EXECUTION_ID/attempts/$ATTEMPT_NUMBER/result")"
+          status="$(curl --silent --show-error             --output submit.json             --write-out '%{http_code}'             --request POST             --header "Authorization: Bearer $RUNDIFF_BRIDGE_TOKEN"             --header "Content-Type: application/json"             --data-binary @result.json             "$RUNDIFF_CONTROL_PLANE_URL/execution-bridges/github-actions/executions/$EXECUTION_ID/attempts/$ATTEMPT_NUMBER/result")"
 
           if [[ "$status" != "202" ]]; then
             echo "RunDiff result submission failed with HTTP $status" >&2
